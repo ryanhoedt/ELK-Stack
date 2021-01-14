@@ -4,9 +4,16 @@ The files in this repository were used to configure the network depicted below.
 
 ![ELK Stack Diagram](https://github.com/ryanhoedt/ELK-Stack/blob/main/Diagrams/Red%20Team%20Diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook files may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+[first_playbook.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/first_playbook.yml) installs and configures the DVWA virtual machines.
+
+[install_elk.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/install_elk.yml) installs and configures the ELK server container. 
+
+[filebeat-playbook.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/filebeat-playbook.yml) installs and configures Filebeat on the DVWA virtual machines.
+
+[filebeat-playbook.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/metricbeat-playbook.yml) installs and configures Metricbeat on the DVWA virtual machines.
+
 
 This document contains the following details:
 - Description of the Topology
@@ -21,22 +28,22 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
+Load balancing ensures that the application will be highly _____, in addition to restricting overwhelming traffic to the network.
 - _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
 - _TODO: What does Filebeat watch for?_
 - _TODO: What does Metricbeat record?_
 
-The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
+The configuration details of each machine may be found below:
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name     | Function        | IP Address | Operating System     |
+|----------|-----------------|------------|----------------------|
+| Jump Box | Gateway         | 10.0.0.10  | Linux (ubuntu 18.04) |
+| Web-1    | DVWA Web Server | 10.0.0.11  | Linux (ubuntu 18.04) |
+| Web-2    | DVWA Web Server | 10.0.0.12  | Linux (ubuntu 18.04) |
+| Web-3    | DVWA Web Server | 10.0.0.13  | Linux (ubuntu 18.04) |
+| ELK-VM   | ELK Stack       | 10.1.0.4   | Linux (ubuntu 18.04) |
 
 ### Access Policies
 
@@ -50,11 +57,13 @@ Machines within the network can only be accessed by _____.
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name     | Publicly Accessible                 | Allowed IP Address                                                   |
+|----------|-------------------------------------|----------------------------------------------------------------------|
+| Jump Box | Yes, via SSH only                   | 97.122.185.50, My personal computer's public IP address              |
+| Web-1    | No                                  | 10.0.0.10                                                            |
+| Web-2    | No                                  | 10.0.0.10                                                            |
+| Web-3    | No                                  | 10.0.0.10                                                            |
+| ELK-VM   | Yes, via Kibana portal at port 5601 | 10.0.0.10; 97.122.185.50, my  personal computer's public IP address  |
 
 ### Elk Configuration
 
