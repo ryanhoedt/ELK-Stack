@@ -49,21 +49,21 @@ The configuration details of each machine may be found below:
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 - _TODO: Add whitelisted IP addresses_
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by the Jump Box.
+- The Jump Box has access to the Elk server through the ansible container via SSH 10.0.0.10
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible                 | Allowed IP Address                                                   |
-|----------|-------------------------------------|----------------------------------------------------------------------|
-| Jump Box | Yes, via SSH only                   | 97.122.185.50, My personal computer's public IP address              |
-| Web-1    | No                                  | 10.0.0.10                                                            |
-| Web-2    | No                                  | 10.0.0.10                                                            |
-| Web-3    | No                                  | 10.0.0.10                                                            |
-| ELK-VM   | Yes, via Kibana portal at port 5601 | 10.0.0.10; 97.122.185.50, my  personal computer's public IP address  |
+| Name     | Publicly Accessible                                                      | Allowed IP Address                                        |
+|----------|--------------------------------------------------------------------------|-----------------------------------------------------------|
+| Jump Box | via SSH only                                                             | 97.122.185.50 (My personal computer's public IP address)  |
+| Web-1    | No, but can access DVWA portal via HTTP at the Load Balancer's public IP | 97.122.185.50; 10.0.0.10 (Jump Box)                       |
+| Web-2    | No, but can access DVWA portal via HTTP at the Load Balancer's public IP | 97.122.185.50; 10.0.0.10                                  |
+| Web-3    | No, but can access DVWA portal via HTTP at the Load Balancer's public IP | 97.122.185.50; 10.0.0.10                                  |
+| ELK-VM   | No, but can access Kibana portal via port 5601                           | 97.122.185.50; 10.0.0.10                                  |
 
 ### Elk Configuration
 
@@ -77,14 +77,15 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+(Images/docker_ps_output.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 - _TODO: List the IP addresses of the machines you are monitoring_
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
