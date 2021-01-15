@@ -103,42 +103,41 @@ SSH into the control node and follow the steps below:
 - Copy the [filebeat-configuration.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/filebeat-configuration.yml) file to /etc/ansible/files.
 - Update line 1106 to include the IP address of your ELK server:
 
-hosts: \["\<ELK server IP\>:9200"\]
+  - hosts: \["\<ELK server IP\>:9200"\]
 
 - Update line 1805 to include the IP address of your ELK server:
 
-hosts: \["\<ELK server IP\>:5601"\]
+  - hosts: \["\<ELK server IP\>:5601"\]
 
 - Copy the [metricbeat-config.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/metricbeat-config.yml) file to /etc/ansible/files.
 - Update line 62 to include the IP address of your ELK server:
 
-hosts: \["\<ELK server IP\>:5601"\]
+  - hosts: \["\<ELK server IP\>:5601"\]
 
 - Update line 95 to include the IP address of your ELK server:
 
-hosts: \["\<ELK server IP\>:9200"\]
+  - hosts: \["\<ELK server IP\>:9200"\]
 
 
 - Copy the [hosts](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/hosts) file to /etc/ansible.
 - Update the hosts lines to include the group name and IP addresses of your web servers and ELK server:
 
-\[webservers\]
+  - \[webservers\]
 
-\<Web server IP\> ansible_python_interpreter=/usr/bin/python3
+  - \<Web server IP\> ansible_python_interpreter=/usr/bin/python3
 
-\<Web server IP\> ansible_python_interpreter=/usr/bin/python3
+  - \<Web server IP\> ansible_python_interpreter=/usr/bin/python3
 
-\<Web server IP\> ansible_python_interpreter=/usr/bin/python3
+  - \<Web server IP\> ansible_python_interpreter=/usr/bin/python3
 
 
-\[elk\]
+  - \[elk\]
 
-\<ELK server IP\> ansible_python_interpreter=/usr/bin/python3
+  - \<ELK server IP\> ansible_python_interpreter=/usr/bin/python3
 
 
 - Copy the [filebeat-playbook.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/filebeat-playbook.yml) file to /etc/ansible/files.
 - Update the filebeat-playbook.yml file to include the name of your host group on line 3 (webservers, in this case).
-- 
 - Copy the [metricbeat-playbook.yml](https://github.com/ryanhoedt/ELK-Stack/blob/main/Ansible/metricbeat-playbook.yml) file to /etc/ansible/files.
 - Update the metricbeat-playbook.yml file to the name of your host group on line 3 (webservers, in this case).
 - Run the playbook and navigate to http://<ELK-VM Public IP address>:5601/app/kibana to check that the installation worked as expected.
